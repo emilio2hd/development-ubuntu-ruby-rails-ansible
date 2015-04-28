@@ -1,0 +1,12 @@
+---
+- hosts: vm
+  roles:
+    - swap
+    - base
+
+- hosts: all
+  gather_facts: no
+  roles:
+    - { role: apt_proxy, when: use_apt_proxy }
+  tasks:
+    - apt: update_cache=yes
