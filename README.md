@@ -2,11 +2,18 @@
 Ansible playbook to provision a ruby and rails deployment environment with:
 
 * Ubuntu 14.04 (trusty32)
-* Base Dependencies
+* Swap 512 MB
+* Base Dependencies + Additional packages
+* Ruby **2.2.0** (by rbevn)
+* Rails **~> 4.2**
+
+If you want change the ruby or rails version, edit [config.yml](./ansible/playbook/group_vars/all/config.yml)
 
 ## Initial Instructions
 
 Requirements:
 
-* Vagrant >= 1.5
+* [Virtualbox](https://www.virtualbox.org/)
+* [Vagrant >= 1.5](https://www.vagrantup.com/downloads.html)
+* [Ansibl >= 1.9](https://ansible.com) when using **GNU/Linux**
 * vagrant-bindfs >= 0.3.2

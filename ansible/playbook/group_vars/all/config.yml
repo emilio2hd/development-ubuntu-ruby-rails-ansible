@@ -1,6 +1,7 @@
 ---
-use_apt_proxy: false
+vm_swap: 512
 
+use_apt_proxy: false
 packages:
   - curl
   - libcurl3
@@ -15,3 +16,7 @@ server_name: localhost
 user_name: vagrant
 group_name: vagrant
 user_home_path: '/home/{{ user_name }}'
+
+rails_version: '~> 4.2'
+ruby_version: 2.2.0
+environment_file: /vagrant/.envrc
