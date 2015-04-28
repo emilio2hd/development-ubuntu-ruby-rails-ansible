@@ -6,8 +6,9 @@ Ansible playbook to provision a ruby and rails deployment environment with:
 * Base Dependencies + Additional packages
 * Ruby **2.2.0** (by rbevn)
 * Rails **~> 4.2**
+* MySQL Server + mysql2 gem
 
-If you want change the ruby or rails version, edit [config.yml](./ansible/playbook/group_vars/all/config.yml)
+If you want change the ruby or rails version, edit [config.yml](ansible/playbook/group_vars/all/config.yml)
 
 ## Initial Instructions
 

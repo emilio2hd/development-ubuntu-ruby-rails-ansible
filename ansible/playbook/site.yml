@@ -5,6 +5,8 @@
     - swap
     - { role: apt_proxy, when: use_apt_proxy }
     - base
+    - rbenv
     - ruby
+    - mysql
   tasks:
     - apt: update_cache=yes
