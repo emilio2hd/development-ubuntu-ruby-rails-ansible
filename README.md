@@ -22,9 +22,50 @@ Requirements:
 * [Ansibl >= 1.9](https://ansible.com) when using **GNU/Linux**
 * vagrant-bindfs >= 0.3.2
 
-Inside your vm, the application will be founded at /vagrant.
-To create a new aplicattion run de code below:
+Inside your vm, the application will be found at /vagrant.
+
+### Creating a New Rails Project
+
+Access your virtual machine terminal, using **ssh** and run **rails new**:
 
 ```
+vagrant ssh
 rails new /vagrant
+```
+
+# Configuring Database
+
+Below has configuration for all databases installed by provision. The **myapp** database will be created, as well its gems will be installed by provision.
+
+### Configuring SQlite
+
+``` yaml
+development:
+  adapter: sqlite3
+  #database: ":memory:" # If you want database in memory (useful for test).
+  database: db/development.sqlite3 # It'll be created if doesn't exist
+```
+
+### Configuring MySQL
+
+``` yaml
+development:
+  adapter: mysql2
+  encoding: utf8
+  host: localhost
+  username: vagrant
+  password: 123456
+  database: myapp
+```
+
+### Configuring PostgreSQL
+
+``` yaml
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: vagrant
+  password: 123456
+  database: myapp
 ```
