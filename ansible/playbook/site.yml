@@ -7,6 +7,9 @@
     - base
     - rbenv
     - ruby
+    - sqlite
     - mysql
+    - postgresql
+    - rmagick
   tasks:
     - apt: update_cache=yes

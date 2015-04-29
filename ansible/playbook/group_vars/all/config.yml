@@ -9,10 +9,7 @@ packages:
   - libcurl3
   - libcurl3-gnutls
   - libcurl4-openssl-dev
-  - libmagickcore-dev
-  - libmagickwand-dev
-  - libmagick++-dev
-  - libsqlite3-dev
+  - nodejs
 
 # Server config
 server_name: localhost
@@ -32,3 +29,8 @@ environment_file: /vagrant/.envrc
 mysql_db_name: myapp
 mysql_db_user: '{{user_name}}'
 mysql_db_password: 123456
+
+#PostgreSQL
+postgresql_db_user: '{{user_name}}'
+postgresql_db_password: 123456
+postgresql_db_name: myapp

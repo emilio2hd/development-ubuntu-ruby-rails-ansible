@@ -1,0 +1,7 @@
+---
+- name: Install package
+  apt: name=libsqlite3-dev
+
+- name: Install sqlite3 gem
+  command: bash -lc "gem install sqlite3"
+  sudo_user: '{{ user_name }}'

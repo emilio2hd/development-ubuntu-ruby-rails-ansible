@@ -13,15 +13,10 @@
     - libreadline6-dev
     - zlib1g-dev
     - libncurses5-dev
-    - nodejs
     - python-pip
     - python-dev
     - htop
     - git
-    - libdjvulibre-dev
-    - libjpeg-dev
-    - libtiff-dev
-    - libwmf-dev
 
 - name: Install additional packages
   apt: name={{ item }}
