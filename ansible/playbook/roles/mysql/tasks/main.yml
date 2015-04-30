@@ -1,18 +1,31 @@
 ---
+- name: Check for previous installation
+  shell: "[ -f /usr/sbin/mysqld ]"
+  ignore_errors: True
+  register: mysqld_exists
+
 - name: Install packages
   apt: name={{ item }}
   with_items:
     - mysql-server
+    - python-mysqldb
     - libmysqlclient-dev
-
-- name: Install required Python modules
-  pip: name=MySQL-python
+  when: mysqld_exists|failed
 
 - name: Enable and start mysql
   service: name=mysql enabled=yes state=started
 
 - name: Create mysql user
-  mysql_user: name={{ mysql_db_user }} password={{ mysql_db_password }} priv=*.*:ALL
+  mysql_user: name={{ mysql_db_user }} host={{ item }} password={{ mysql_db_password }} priv=*.*:ALL,GRANT
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: copy .my.cnf file with root password credentials
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root mode=0644
+  notify:
+    - mysql-restart
 
 - name: Create mysql database
   mysql_db: name={{ mysql_db_name }}

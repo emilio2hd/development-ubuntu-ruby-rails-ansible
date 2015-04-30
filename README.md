@@ -34,9 +34,18 @@ vagrant ssh
 rails new /vagrant
 ```
 
+### Starting Rails
+
+```
+rails s -b 0.0.0.0
+```
+Once started, you can browse accessing http://localhost:3000
+
 # Configuring The Database
 
-See the configurations for all databases installed by provisioning. The **myapp** database will be created, and its gems will be installed as well.
+See the configurations for all databases installed by provisioning.
+The **myapp** database will be created, and its gems will be installed as well.
+You have to reference the gem in your Gemfile!
 
 ### Configuring SQlite
 
@@ -58,6 +67,12 @@ development:
   password: 123456
   database: myapp
 ```
+
+Also, you cant to access VM mysql by some mysql client. In your client, configure:
+    **host**: localhost
+    **port**: 3307
+    **user**: vagrant
+**password**: 123456
 
 ### Configuring PostgreSQL
 

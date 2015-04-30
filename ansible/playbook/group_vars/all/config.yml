@@ -25,12 +25,15 @@ rails_version: '~> 4.2'
 ruby_version: 2.2.0
 environment_file: /vagrant/.envrc
 
+default_db_name: myapp
+default_db_password: 123456
+
 #MySQL
-mysql_db_name: myapp
 mysql_db_user: '{{user_name}}'
-mysql_db_password: 123456
+mysql_db_password: '{{default_db_password}}'
+mysql_db_name: '{{default_db_name}}'
 
 #PostgreSQL
 postgresql_db_user: '{{user_name}}'
-postgresql_db_password: 123456
-postgresql_db_name: myapp
+postgresql_db_password: '{{default_db_password}}'
+postgresql_db_name: '{{default_db_name}}'
