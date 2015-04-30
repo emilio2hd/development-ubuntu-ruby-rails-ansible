@@ -11,5 +11,6 @@
     - mysql
     - postgresql
     - rmagick
+    - vim
   tasks:
     - apt: update_cache=yes

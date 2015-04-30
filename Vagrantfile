@@ -39,8 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'ubuntu/trusty32'
 
   config.vm.network 'private_network', ip: '192.168.33.101'
-  config.vm.synced_folder '.', '/vagrant'
-  config.vm.synced_folder 'ansible/playbook', '/ansible'
+  config.vm.synced_folder '.', '/vagrant', type: :nfs
+  config.vm.synced_folder 'ansible/playbook', '/ansible', type: :nfs
 
   config.vm.define 'myapplication' do |machine|
     machine.vm.network 'forwarded_port', :guest => 80, :host => 8080, :auto_correct => true
@@ -53,6 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision 'ansible' do |ansible|
       ansible.playbook = 'ansible/playbook/site.yml'
       ansible.sudo = true
+      ansible.verbose = 'v' # To see what's going on
     end
   else
     Dir['shell/*.sh'].each do |script|

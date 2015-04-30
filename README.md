@@ -10,8 +10,9 @@ Ansible playbook to provision a ruby and rails deployment environment with:
 * MySQL Server + mysql2 gem
 * PostgreSQL 9.3 + pg gem
 * ImageMagick + rmagick gem
+* Vim
 
-If you want change the ruby or rails version, edit [config.yml](ansible/playbook/group_vars/all/config.yml)
+If you want to change the ruby or rails version, edit [config.yml](ansible/playbook/group_vars/all/config.yml)
 
 # Initial Instructions
 
@@ -33,9 +34,9 @@ vagrant ssh
 rails new /vagrant
 ```
 
-# Configuring Database
+# Configuring The Database
 
-Below has configuration for all databases installed by provision. The **myapp** database will be created, as well its gems will be installed by provision.
+See the configurations for all databases installed by provisioning. The **myapp** database will be created, and its gems will be installed as well.
 
 ### Configuring SQlite
 
@@ -69,3 +70,34 @@ development:
   password: 123456
   database: myapp
 ```
+
+# Vagrant Commands
+
+Start the VM:
+
+```
+$ vagrant up
+```
+
+Access the VM terminal:
+
+```
+$ vagrant ssh
+```
+
+To provision the VM again:
+
+```
+$ vagrant provision
+```
+
+Destroy the VM:
+
+```
+$ vagrant destroy
+```
+
+# More Informations & Thanks
+
+[Vagrant - ANSIBLE PROVISIONER](http://docs.vagrantup.com/v2/provisioning/ansible.html)
+[Using Vagrant for Ansible roles](http://renemoser.net/blog/2014/03/27/using-vagrant-for-ansible-roles/)
