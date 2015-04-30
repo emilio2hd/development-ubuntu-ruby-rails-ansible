@@ -45,6 +45,7 @@ Once started, you can browse accessing http://localhost:3000
 
 See the configurations for all databases installed by provisioning.
 The **myapp** database will be created, and its gems will be installed as well.
+
 You have to reference the gem in your Gemfile!
 
 ### Configuring SQlite
@@ -69,10 +70,11 @@ development:
 ```
 
 Also, you cant to access VM mysql by some mysql client. In your client, configure:
-    **host**: localhost
-    **port**: 3307
-    **user**: vagrant
-**password**: 123456
+
+    host: localhost
+    port: 3307
+    user: vagrant
+    password: 123456
 
 ### Configuring PostgreSQL
 
@@ -114,5 +116,5 @@ $ vagrant destroy
 
 # More Informations & Thanks
 
-[Vagrant - ANSIBLE PROVISIONER](http://docs.vagrantup.com/v2/provisioning/ansible.html)
-[Using Vagrant for Ansible roles](http://renemoser.net/blog/2014/03/27/using-vagrant-for-ansible-roles/)
+* [Vagrant - ANSIBLE PROVISIONER](http://docs.vagrantup.com/v2/provisioning/ansible.html)
+* [Using Vagrant for Ansible roles](http://renemoser.net/blog/2014/03/27/using-vagrant-for-ansible-roles/)
