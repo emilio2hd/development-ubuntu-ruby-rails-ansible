@@ -3,7 +3,7 @@ Ansible playbook to provision a ruby and rails deployment environment with:
 
 * Ubuntu 14.04 (trusty32)
 * Swap 512 MB
-* Base Dependencies + Additional packages (nodejs, curl)
+* Base Dependencies + Additional packages (nodejs and curl)
 * Ruby **2.2.0** (by rbevn)
 * Rails **~> 4.2**
 * SQlite 3 + sqlite3 gem
@@ -16,18 +16,44 @@ If you want to change the ruby or rails version, edit [config.yml](ansible/playb
 
 # Initial Instructions
 
-Requirements:
+### Requirements:
 
 * [Virtualbox](https://www.virtualbox.org/)
 * [Vagrant >= 1.5](https://www.vagrantup.com/downloads.html)
 * [Ansibl >= 1.9](https://ansible.com) when using **GNU/Linux**
-* vagrant-bindfs >= 0.3.2
 
-Inside your vm, the application will be found at /vagrant.
+### Port Forwards:
+
+In Vagranfile there are some port forwards, so you can access externally mysql, postgresql and browse your application:
+
+``` ruby
+machine.vm.network :forwarded_port, guest: 3000,  host: 3000, auto_correct: true  # rails application
+machine.vm.network :forwarded_port, guest: 3306,  host: 3307, auto_correct: true  # mysql
+machine.vm.network :forwarded_port, guest: 5432,  host: 5532, auto_correct: true  # postgresql
+```
+
+I set ```auto_correct: true``` to change the port if the current is already in use,
+so pay attention when your VM is booting, maybe you'll see some output like that:
+
+```
+==> myapplication: Clearing any previously set forwarded ports...
+==> myapplication: Fixed port collision for 5432 => 5432. Now on port 2200.
+...
+...
+myapplication: Forwarding ports...
+myapplication: 80 => 8080 (adapter 1)
+myapplication: 443 => 8081 (adapter 1)
+myapplication: 3000 => 3000 (adapter 1)
+myapplication: 3306 => 3307 (adapter 1)
+myapplication: 5432 => 2200 (adapter 1) # 5432 is in use, so has changed 5432 to 2200
+myapplication: 22 => 2222 (adapter 1)
+```
+I didn't set port forward to default ports for mysql and postgresql, but I wrote this topic just incase someone pass for some problem.
 
 ### Creating a New Rails Project
 
-Access your virtual machine terminal, using **ssh** and run **rails new**:
+Your application must be created at /vagrant.
+Access your VM Terminal, using **ssh** and run **rails new**:
 
 ```
 vagrant ssh
@@ -43,10 +69,10 @@ Once started, you can browse accessing http://localhost:3000
 
 # Configuring The Database
 
-See the configurations for all databases installed by provisioning.
 The **myapp** database will be created, and its gems will be installed as well.
+You have to reference the gem in your Gemfile. Don't forget it!
 
-You have to reference the gem in your Gemfile!
+See the configurations for all databases installed by provisioning.
 
 ### Configuring SQlite
 
@@ -69,12 +95,12 @@ development:
   database: myapp
 ```
 
-Also, you cant to access VM mysql by some mysql client. In your client, configure:
+You cant to access VM MySQL by some mysql client. In your client, configure:
 
-    host: localhost
-    port: 3307
-    user: vagrant
-    password: 123456
+    Host: localhost
+    Port: 3307 # Check if the port didn't change, as I've mentioned in Port Forwards
+    User: vagrant
+    Password: 123456
 
 ### Configuring PostgreSQL
 
@@ -87,6 +113,13 @@ development:
   password: 123456
   database: myapp
 ```
+
+To access VM PostgreSQL by pgAdmin, configure:
+
+    Host: localhost
+    Port: 5532 # Check if the port didn't change, as I've mentioned in Port Forwards
+    Username: vagrant
+    Password: 123456
 
 # Vagrant Commands
 

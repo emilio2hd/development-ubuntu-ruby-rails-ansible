@@ -4,23 +4,6 @@
 Vagrant.require_version '>= 1.5'
 VAGRANTFILE_API_VERSION = '2'
 
-def require_plugins(plugins = {})
-  needs_restart = false
-
-  plugins.each do |plugin, version|
-    next if Vagrant.has_plugin?(plugin)
-    cmd = ['vagrant plugin install', plugin]
-    cmd << "--plugin-version #{version}" if version
-    system(cmd.join(' ')) || exit!
-    needs_restart = true
-  end
-
-  exit system('vagrant', *ARGV) if needs_restart
-end
-
-require_plugins \
-  'vagrant-bindfs' => '0.3.2'
-
 def ansible_installed?
   exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
   ENV['PATH'].split(File::PATH_SEPARATOR).any? do |p|
@@ -43,11 +26,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder 'ansible/playbook', '/ansible'
 
   config.vm.define 'myapplication' do |machine|
-    config.vm.network :forwarded_port, guest: 80,    host: 8080
-    config.vm.network :forwarded_port, guest: 443,   host: 8081
-    config.vm.network :forwarded_port, guest: 3000,  host: 3000   # rails application
-    config.vm.network :forwarded_port, guest: 3306,  host: 3307   # mysql
-    config.vm.network :forwarded_port, guest: 5432,  host: 5532   # postgresql
+    machine.vm.network :forwarded_port, guest: 80,    host: 8080
+    machine.vm.network :forwarded_port, guest: 443,   host: 8081
+    machine.vm.network :forwarded_port, guest: 3000,  host: 3000, auto_correct: true  # rails application
+    machine.vm.network :forwarded_port, guest: 3306,  host: 3307, auto_correct: true  # mysql
+    machine.vm.network :forwarded_port, guest: 5432,  host: 5532, auto_correct: true  # postgresql
   end
 
   config.ssh.forward_agent = true
