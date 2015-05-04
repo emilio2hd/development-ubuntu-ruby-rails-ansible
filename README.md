@@ -18,9 +18,9 @@ If you want to change the ruby or rails version, edit [config.yml](ansible/playb
 
 ### Requirements:
 
-* [Virtualbox](https://www.virtualbox.org/)
+* [Virtualbox >= 4.3](https://www.virtualbox.org/)
 * [Vagrant >= 1.5](https://www.vagrantup.com/downloads.html)
-* [Ansibl >= 1.9](https://ansible.com) when using **GNU/Linux**
+* [Cygwin](https://www.cygwin.com/) if you're using **Windows**
 
 ### Port Forwards:
 
