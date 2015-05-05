@@ -1,5 +1,5 @@
 # development-ubuntu-ruby-rails-ansible
-Ansible playbook to provision a ruby and rails deployment environment with:
+Ansible playbook to provision a ruby and rails development environment with:
 
 * Ubuntu 14.04 (trusty32)
 * Swap 512 MB
