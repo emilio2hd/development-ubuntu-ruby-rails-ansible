@@ -18,10 +18,7 @@ cat > /tmp/hosts << "EOF"
 [mysql]
 127.0.0.1
 
-[redis]
-127.0.0.1
-
-[resque]
+[postgresql]
 127.0.0.1
 
 EOF

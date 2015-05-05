@@ -3,15 +3,15 @@
   apt: name={{ item }}
   with_items:
     - libpq-dev
-    - postgresql
+    - postgresql-{{ postgresql_version }}
     - postgresql-contrib
 
 - name: Configure PostgreSQL - postgresql.conf
-  template: src=postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
+  template: src=postgresql.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf
   notify: restart postgresql
 
 - name: Configure PostgreSQL - pg_hba.conf
-  template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
   notify: restart postgresql
 
 - name: Install required Python modules

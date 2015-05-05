@@ -42,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.verbose = 'v' # To see what's going on
     end
   else
-    Dir['shell/*.sh'].each do |script|
+    Dir['ansible/shell/*.sh'].each do |script|
       config.vm.provision 'shell', :path => script, :privileged => false
     end
   end
