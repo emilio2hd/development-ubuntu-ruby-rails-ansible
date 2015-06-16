@@ -45,10 +45,10 @@ myapplication: 80 => 8080 (adapter 1)
 myapplication: 443 => 8081 (adapter 1)
 myapplication: 3000 => 3000 (adapter 1)
 myapplication: 3306 => 3307 (adapter 1)
-myapplication: 5432 => 2200 (adapter 1) # 5432 is in use, so has changed 5432 to 2200
+myapplication: 5432 => 2200 (adapter 1) # 5432 is in use, so was changed 5432 to 2200
 myapplication: 22 => 2222 (adapter 1)
 ```
-I didn't set port forward to default ports for mysql and postgresql, but I wrote this topic just incase someone pass for some problem.
+I didn't set port forward to default ports for mysql and postgresql(3306 => 3306; 5432 => 5432), but I wrote this topic just in case someone pass for some problem.
 
 ### Creating a New Rails Project
 
@@ -95,10 +95,10 @@ development:
   database: myapp
 ```
 
-You cant to access VM MySQL by some mysql client. In your client, configure:
+You can access VM MySQL by some mysql client. In your client, configure:
 
     Host: localhost
-    Port: 3307 # Check if the port didn't change, as I've mentioned in Port Forwards
+    Port: 3307 # Check if the port didn't change, as was mentioned in Port Forwards
     User: vagrant
     Password: 123456
 
@@ -117,7 +117,7 @@ development:
 To access VM PostgreSQL by pgAdmin, configure:
 
     Host: localhost
-    Port: 5532 # Check if the port didn't change, as I've mentioned in Port Forwards
+    Port: 5532 # Check if the port didn't change, as was mentioned in Port Forwards
     Username: vagrant
     Password: 123456
 
