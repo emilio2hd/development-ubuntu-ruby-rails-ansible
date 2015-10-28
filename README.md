@@ -1,5 +1,5 @@
 # development-ubuntu-ruby-rails-ansible
-Ansible playbook to provision a ruby and rails development environment with:
+Ansible playbook to provide a ruby and rails development environment with:
 
 * Ubuntu 14.04 (trusty32)
 * Swap 512 MB
@@ -12,7 +12,7 @@ Ansible playbook to provision a ruby and rails development environment with:
 * ImageMagick + rmagick gem
 * Vim
 
-If you want to change the ruby or rails version, edit [config.yml](ansible/playbook/group_vars/all/config.yml)
+If you want to change Ruby or Rails version, edit [config.yml](ansible/playbook/group_vars/all/config.yml)
 
 # Initial Instructions
 
@@ -24,7 +24,7 @@ If you want to change the ruby or rails version, edit [config.yml](ansible/playb
 
 ### Port Forwards:
 
-In Vagranfile there are some port forwards, so you can access externally mysql, postgresql and browse your application:
+Vagranfile declares some port forwards, so you can access externally mysql, postgresql and browse your application:
 
 ``` ruby
 machine.vm.network :forwarded_port, guest: 3000,  host: 3000, auto_correct: true  # rails application
